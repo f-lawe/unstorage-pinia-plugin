@@ -7,9 +7,9 @@
     "unstorage",
     "Vue"
   ],
-  "repository": "https://github.com/BreizhReloaded/unstorage-pinia-plugin",
+  "repository": "https://github.com/f-lawe/unstorage-pinia-plugin",
   "license": "MIT",
-  "author": "BreizhReloaded <breizhreloaded@outlook.com>",
+  "author": "François Lavaud-Wernert <francois@lavaud.family>",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -24,17 +24,17 @@
     "watch": "vite build --watch"
   },
   "devDependencies": {
+    "@types/node": "^18.15.7",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
-    "esbuild": "^0.14.7",
     "eslint": "^8.5.0",
     "pinia": "^2.0.6",
-    "rimraf": "^3.0.2",
-    "sort-package-json": "^1.53.1",
-    "typescript": "^4.5.4",
-    "unstorage": "^0.3.3",
-    "vite": "^2.8.6",
-    "vite-plugin-dts": "^0.9.10"
+    "rimraf": "^4.4.1",
+    "sort-package-json": "^2.4.1",
+    "typescript": "^5.0.2",
+    "unstorage": "^1.4.1",
+    "vite": "^4.2.1",
+    "vite-plugin-dts": "^2.1.0"
   },
   "peerDependencies": {
     "pinia": "^2.0.6",
