@@ -1,6 +1,10 @@
 # unstorage-pinia-plugin
 
-Persist and hydrate your pinia state using [unstorage](https://github.com/unjs/unstorage)!
+![npm](https://img.shields.io/npm/v/unstorage-pinia-plugin)
+![npm](https://img.shields.io/npm/dt/unstorage-pinia-plugin)
+![NPM](https://img.shields.io/npm/l/unstorage-pinia-plugin)
+
+Persist and hydrate your pinia state using [Unstorage](https://github.com/unjs/unstorage)!
 
 ## Install
 ```sh
@@ -12,7 +16,7 @@ yarn add unstorage unstorage-pinia-plugin
 ```
 
 ## Usage
-You can use any available [unstorage driver](https://github.com/unjs/unstorage#drivers). Drivers can be set either globally or per store. Locally defined driver overrides global definition.
+You can use any available Unstorage driver. Drivers can be set either globally or per store. Locally defined driver overrides global definition.
 
 Global driver:
 ```ts
@@ -60,10 +64,10 @@ export const useStore = defineStore(
       // unstorage store options
     }
   }
-});
+);
 ```
 
-If you prefer the option way:
+If you prefer the old option way (doesn't work with Nuxt):
 ```ts
 import { defineUnstore } from 'unstorage-pinia-plugin';
 import localStorageDriver from 'unstorage/drivers/localstorage';
@@ -82,9 +86,13 @@ export const useStore = defineUnstore(
 ## Configuration
 
 ### Plugin options
-- `driver: Driver` : Default unstorage driver (see [list](https://github.com/unjs/unstorage#drivers)).
+- `driver: Driver` : Default unstorage driver.
 
 ### Store options
-- `driver: Driver` : Driver for the store (see [list](https://github.com/unjs/unstorage#drivers)).
+- `driver: Driver` : Driver for the store.
 
 - `filter?: Array<string>` : State keys you actually want to persist. All keys are pushed by default.
+
+## License
+
+[MIT](./LICENSE)

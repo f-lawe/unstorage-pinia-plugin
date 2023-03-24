@@ -1,10 +1,10 @@
 {
   "name": "unstorage-pinia-plugin",
   "version": "1.1.3",
-  "description": "Pinia store persistence and hydration using unstorage",
+  "description": "Pinia store persistence and hydration using Unstorage",
   "keywords": [
     "Pinia",
-    "unstorage",
+    "Unstorage",
     "Vue"
   ],
   "repository": "https://github.com/f-lawe/unstorage-pinia-plugin",
