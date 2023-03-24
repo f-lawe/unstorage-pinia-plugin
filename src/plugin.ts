@@ -4,7 +4,7 @@ import { PluginOptions, StoreOptions } from './type';
 
 const configureStore = (store: Store, storage: Storage, filter?: Array<string>) => {
   storage.getItem(store.$id).then((state) => {
-    Object.assign(store, state);
+    store.$patch(state);
   });
 
   const _filter = (filter) ?? Object.keys(store.$state);
