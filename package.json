@@ -10,9 +10,9 @@
   "repository": "https://github.com/f-lawe/unstorage-pinia-plugin",
   "license": "MIT",
   "author": "François Lavaud-Wernert <francois@lavaud.family>",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/unstorage-pinia-plugin.cjs",
+  "module": "dist/unstorage-pinia-plugin.mjs",
+  "types": "dist/unstorage-pinia-plugin.d.ts",
   "files": [
     "dist"
   ],
@@ -34,7 +34,7 @@
     "typescript": "^5.0.2",
     "unstorage": "^0.3.3 || ^1.0.0",
     "vite": "^4.2.1",
-    "vite-plugin-dts": "^2.1.0"
+    "vite-plugin-dts-bundle-generator": "^0.0.2"
   },
   "peerDependencies": {
     "pinia": "^2.0.6",

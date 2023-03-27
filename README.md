@@ -69,14 +69,16 @@ export const useStore = defineStore(
 
 If you prefer the old option way (doesn't work with Nuxt):
 ```ts
-import { defineUnstore } from 'unstorage-pinia-plugin';
+import { persistStore } from 'unstorage-pinia-plugin';
 import localStorageDriver from 'unstorage/drivers/localstorage';
 
-export const useStore = defineUnstore(
-  'store',
-  {
-    // define your state, getters and actions
-  },
+export const useStore = persistStore(
+  defineStore(
+    'store',
+    {
+      // define your state, getters and actions
+    }
+  ),
   {
     // unstorage store options
   }
