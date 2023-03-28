@@ -1,12 +1,17 @@
-import { defineStore } from 'pinia';
 import type { PiniaPluginContext, StateTree, Store } from 'pinia';
 import { createStorage } from 'unstorage';
 import type { Driver, Storage } from 'unstorage';
 
+export interface UnstorageStoreOptions {
+  driver: Driver,
+  filter?: Array<string>
+  storage?: Storage
+}
+
 declare module 'pinia' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   export interface DefineStoreOptionsBase<S extends StateTree, Store> {
-    unstorage?: StoreOptions
+    unstorage?: UnstorageStoreOptions
   }
 }
 
@@ -30,36 +35,29 @@ const configureStore = (store: Store, storage: Storage, filter?: Array<string>) 
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface StoreOptions {
-  driver: Driver,
-  filter?: Array<string>
-  storage?: Storage
-}
+const unstorageOptionsBag: Record<string, UnstorageStoreOptions> = {};
 
-type PiniaStore = ReturnType<typeof defineStore>;
-
-const unstorageOptionsBag: Record<string, StoreOptions> = {};
-
-export const persistStore = (store: PiniaStore, unstorageOptions: StoreOptions): PiniaStore => {
-  unstorageOptionsBag[store.$id] = unstorageOptions;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const persistStore = (store: any, unstorageOptions: UnstorageStoreOptions) => {
+  unstorageOptionsBag[(store as Store).$id] = unstorageOptions;
   return store;
 };
 
-export interface PluginOptions {
+export interface UnstoragePluginOptions {
   driver?: Driver
 }
 
-export const createUnstoragePlugin = ({ driver }: PluginOptions = {}) => {
-  return({ options, store }: PiniaPluginContext) => {
-    if(options.unstorage) {
-      configureStore(store, createStorage({ driver: options.unstorage.driver }), options.unstorage.filter);
-    }
-    else if(unstorageOptionsBag[store.$id]) {
-      configureStore(store, createStorage({ driver: unstorageOptionsBag[store.$id].driver }), unstorageOptionsBag[store.$id].filter );
-    }
-    else if(driver) {
-      configureStore(store, createStorage({ driver }));
-    }
-  };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const createUnstoragePlugin = ({ driver }: UnstoragePluginOptions = {}) => (ctx: any) => {
+  const { options, store } = ctx as PiniaPluginContext;
+
+  if(options.unstorage) {
+    configureStore(store, createStorage({ driver: options.unstorage.driver }), options.unstorage.filter);
+  }
+  else if(unstorageOptionsBag[store.$id]) {
+    configureStore(store, createStorage({ driver: unstorageOptionsBag[store.$id].driver }), unstorageOptionsBag[store.$id].filter );
+  }
+  else if(driver) {
+    configureStore(store, createStorage({ driver }));
+  }
 };
