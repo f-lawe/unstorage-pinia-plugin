@@ -47,10 +47,7 @@ export interface UnstoragePluginOptions {
   driver?: Driver
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const createUnstoragePlugin = ({ driver }: UnstoragePluginOptions = {}) => (ctx: any) => {
-  const { options, store } = ctx as PiniaPluginContext;
-
+export const createUnstoragePlugin = ({ driver }: UnstoragePluginOptions = {}) => ({ options, store }: PiniaPluginContext) => {
   if(options.unstorage) {
     configureStore(store, createStorage({ driver: options.unstorage.driver }), options.unstorage.filter);
   }
